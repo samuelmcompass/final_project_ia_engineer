@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+
+  jupyter:
+    build: .
+    container_name: jupyter_ai
+
+    ports:
+      - "8888:8888"
+
+    volumes:
+      - .:/app
+      - jupyter_data:/root/.local/share/jupyter
+
+    depends_on:
+      - ollama
+
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+
+    entrypoint: >
+      sh -c "
+      ollama serve &
+      sleep 5 &&
+      ollama pull llama3 &&
+      wait
+      "
+
+    ports:
+      - "11434:11434"
+
+    volumes:
+      - ollama_data:/root/.ollama
+
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+  jupyter_data:

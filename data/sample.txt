@@ -1,0 +1,10 @@
+Hello team,
+
+Please contact maria.silva@example.com or HR at hr@company.com.br.
+
+Employee IDs pending validation:
+ABC-1234
+AB1-2345
+XYZ-9999
+
+Thank you!
